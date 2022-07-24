@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { app } from "../app/appContext";
-import { Input } from "../shared";
+import { Input, Button } from "../shared";
 
 const formData = [
     {
@@ -39,7 +39,7 @@ function Form() {
     
     return (
         <div className="w-4/5 mx-auto max-w-5xl py-8">
-            <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <form onSubmit={(event) => handleSubmit(event)} id="get-eos-data" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {
                     formData.map((datum, index) => {
                         const {inputId, placeholder, name, type, labelText} = datum
@@ -65,6 +65,10 @@ function Form() {
                     })
                 }
             </form>
+            
+            <div className="w-[100%] mx-auto max-w-[300px] mt-8">
+                <Button formId={"get-eos-data"} text="Get Data" />
+            </div>
         </div>
     )
 }
