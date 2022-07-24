@@ -1,8 +1,9 @@
-import { Header, Form } from "./components";
+import { Header, Form, Navbar } from "./components";
 
 function App() {
   return (
-    <div className="mt-24 mb-44">
+    <div className="">
+      <Navbar />
       <Header />
       <Form />
     </div>
