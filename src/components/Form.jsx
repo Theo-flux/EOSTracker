@@ -11,14 +11,14 @@ const formData = [
         labelText: 'EOS ACOUNT*'
     },
     {
-        placeholder: 'Ex. "02/02/2022"',
+        placeholder: 'Ex. "2022-05-16"',
         name: 'b_date',
         type: 'text',
         inputId: 'beginning-date',
         labelText: 'BEGINNING DATE*'
     },
     {
-        placeholder: 'Ex. "04/02/2022"',
+        placeholder: 'Ex. "2022-07-16"',
         name: 'e_date',
         type: 'text',
         inputId: 'end-date',
