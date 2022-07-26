@@ -13,14 +13,14 @@ const formData = [
     {
         placeholder: 'Ex. "2022-05-16"',
         name: 'b_date',
-        type: 'text',
+        type: 'datetime-local',
         inputId: 'beginning-date',
         labelText: 'BEGINNING DATE*'
     },
     {
         placeholder: 'Ex. "2022-07-16"',
         name: 'e_date',
-        type: 'text',
+        type: 'datetime-local',
         inputId: 'end-date',
         labelText: 'END DATE*'
     },
