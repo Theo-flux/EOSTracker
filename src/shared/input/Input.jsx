@@ -12,7 +12,7 @@ export function Input({
   return (
     <div className="font-poppins">
         <label 
-            className="block mb-2 text-xs text-coolGray-800 font-medium" 
+            className="block mb-2 text-sm text-coolGray-800 font-medium" 
             htmlFor={inputId}
         >
             {labelText}

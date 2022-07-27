@@ -13,6 +13,7 @@ export function AppProvider({children}){
     });
 
     const [errors, setErrors] = useState();
+    const [apiData, setApiData] = useState();
 
     const handleOnChange = (event) => {
         const {name, value} = event.target;
@@ -25,6 +26,13 @@ export function AppProvider({children}){
 
         if (!errors) {
             console.log(eos.fetchEosData(data))
+            setApiData(eos.fetchEosData(data))
+            setData({
+                account: "",
+                b_date: "",
+                e_date: "",
+                m_unit: ""
+            })
         }
     };
 
@@ -32,6 +40,7 @@ export function AppProvider({children}){
         <app.Provider value={{
             data,
             errors,
+            apiData,
             handleOnChange,
             handleSubmit
         }}>
