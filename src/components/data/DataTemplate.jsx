@@ -1,27 +1,82 @@
-import React, {useContext, useState, useEffect } from 'react'
-import $ from 'jquery';
+import React, {useContext, useState } from 'react'
 import { app } from '../../app/appContext'
 
 const tableHead=["#", "Date", "Time", "Sender", "Receiver", "Quantity(EOS)", "Price(USD)", "Amount"]
 
 const DataTable = ({apiData}) => {
     const [count, setCount] = useState(30)
+    
+    // function exportTableToExcel(tableID, filename = ''){
+    //     let downloadLink;
+    //     let dataType = 'application/vnd.ms-excel';
+    //     let tableSelect = document.getElementById(tableID);
+    //     let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+        
+    //     // Specify file name
+    //     filename = filename?filename+'.xlsx':'excel_data.xlsx';
+        
+    //     // Create download link element
+    //     downloadLink = document.createElement("a");
+        
+    //     document.body.appendChild(downloadLink);
+        
+    //     if(navigator.msSaveOrOpenBlob){
+    //         let blob = new Blob(['\ufeff', tableHTML], {
+    //             type: dataType
+    //         });
+    //         navigator.msSaveOrOpenBlob( blob, filename);
+    //     }else{
+    //         // Create a link to the file
+    //         downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+        
+    //         // Setting the file name
+    //         downloadLink.download = filename;
+            
+    //         //triggering the function
+    //         downloadLink.click();
+    //     }
+    // }
 
-    
-    useEffect(() => {
-        $("#download-btn").on('click', function () {
-            $("#table").table2excel({
-                filename: "Eos-trx-transaction.xls"
-            });
-            console.log("clicked")
-        });
-    }, [])
-    
+    function htmlToCsv(filename){
+        let data = [];
+        let rows = document.querySelectorAll("table tr");
+
+        for (let i = 0; i < rows.length; i++){
+            let row = [], cols = rows[i].querySelectorAll("td, th");
+
+            for (let j = 0; j < cols.length; j++){
+                row.push(cols[j].innerText);
+            }
+
+            data.push(row.join(","));
+        }
+        downloadCSVFile(data.join("\n"), filename);
+    }
+
+    function downloadCSVFile(csv, filename){
+        let csv_file, download_link;
+        csv_file = new Blob([csv], {type: "text/csv"});
+        download_link = document.createElement("a");
+        download_link.download = filename;
+        download_link.href = window.URL.createObjectURL(csv_file);
+        download_link.style.display = "none";
+        document.body.appendChild(download_link);
+        download_link.click();
+    }
+
+    // document.getElementById("export-btn").addEventListener("click", function(){
+    //     let html = document.querySelector("table").outerHTML;
+    //     htmlToCsv(html, "users.csv");
+    // })
+
     return(
         <div className="flex flex-col font-poppins h-[700px]">
             {
             
-                <div id="download-btn" aria-disabled className='hover:text-blue-500 cursor-pointer self-end font-poppins flex justify-between items-center w-fit'>
+                <div id="export-btn" onClick={() => {
+                    
+                    htmlToCsv("eos_trx.csv");
+                }} className='hover:text-blue-500 cursor-pointer self-end font-poppins flex justify-between items-center w-fit'>
                     <i className="ri-file-download-fill text-2xl mr-2"></i> <p>Download XSL</p>
                 </div>
             } 
