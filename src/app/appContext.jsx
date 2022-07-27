@@ -13,20 +13,21 @@ export function AppProvider({children}){
     });
 
     const [errors, setErrors] = useState();
+
+    const [isLoading, setLoading] = useState(false)
     const [apiData, setApiData] = useState();
+    const [apiError, setApiError] = useState();
 
     const handleOnChange = (event) => {
         const {name, value} = event.target;
         setData({...data, [name]: value});
     };
 
-    function handleSubmit(event){
-        event.preventDefault();
+    const handleClick = () => {
         setErrors(validator(data))
 
         if (!errors) {
-            console.log(eos.fetchEosData(data))
-            setApiData(eos.fetchEosData(data))
+            eos.fetchEosData(data, setApiData, setApiError, setLoading)
             setData({
                 account: "",
                 b_date: "",
@@ -41,8 +42,10 @@ export function AppProvider({children}){
             data,
             errors,
             apiData,
+            apiError,
+            isLoading,
             handleOnChange,
-            handleSubmit
+            handleClick
         }}>
             {children}
         </app.Provider>

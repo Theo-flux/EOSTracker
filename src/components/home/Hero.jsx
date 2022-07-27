@@ -9,12 +9,12 @@ export default function Hero(){
       <Div>
         <div className=''>
             <div className='text-center'>
-              <h1 className='max-w-[750px] mx-auto w-full text-5xl md:text-5xl lg:text-7xl font-poppins font-bold'><span className='text-blue-500'>EOS</span> Transaction Tracker</h1>
-              <p className='font-poppins text-sm md:text-lg text-coolGray w-full mt-4 mb-12 mx-auto max-w-[500px]'>
+              <h1 className='max-w-[750px] mx-auto w-full text-4xl sm:text-5xl md:text-5xl lg:text-7xl font-poppins font-bold'><span className='text-blue-500'>EOS</span> Transaction Tracker</h1>
+              <p className='font-poppins text-xs sm:text-sm md:text-lg text-coolGray w-full mt-4 mb-12 mx-auto max-w-[500px]'>
                 Get all transactions relating to an EOS account from just a click of a button. Get more by doing less.
               </p>
-
-              <Link className='py-4 px-8 bg-blue-500 text-xl text-white rounded transition-all duration-500 ease-in-out hover:border hover:border-blue-500 hover:bg-transparent hover:text-blue-500' to="/data">Get Started</Link>
+ 
+              <Link className='py-4 px-8 bg-blue-500 text-xl cursor-pointer text-white rounded transition-all duration-500 ease-in-out hover:border hover:border-blue-500 hover:bg-transparent hover:text-blue-500' to="/data">Get Started</Link>
             </div>
         </div>
       </Div>

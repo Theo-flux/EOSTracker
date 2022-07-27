@@ -36,13 +36,13 @@ const formData = [
 
 function Form() {
 
-    const {data, errors, handleSubmit, handleOnChange, apiData} = useContext(app);
+    const {data, errors, handleClick, handleOnChange, apiData, apiError, isLoading} = useContext(app);
     
     return (
         <Section>
             <Div>
                 <div className="">
-                    <form onSubmit={(event) => handleSubmit(event)} id="get-eos-data" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                         {
                             formData.map((datum, index) => {
                                 const {inputId, placeholder, name, type, labelText} = datum
@@ -67,12 +67,24 @@ function Form() {
                                 )
                             })
                         }
-                    </form>
-                    
-                    
-                    <div className="w-[100%] mx-auto max-w-[300px] mt-8">
-                        <Button formId={"get-eos-data"} text="Get Data" />
                     </div>
+                    {
+                        apiError && <p className="text-center text-red-500">{apiError}</p>
+                    }
+
+                    {
+                        apiData ? 
+                            null
+                            :
+                            <div className="w-[100%] mx-auto max-w-[300px] mt-8">
+                                <Button handler={handleClick}>
+                                    {isLoading && <svg className="animate-spin h-6 w-6 mr-3 rounded-full spinner-border border-4" viewBox="0 0 24 24"></svg>}
+                                    {isLoading && 'Processing...'}
+                                    {isLoading || 'Get Data'}
+                                </Button>
+                            </div>
+                        
+                    }
 
                     <DataTemplate/>
                 </div>

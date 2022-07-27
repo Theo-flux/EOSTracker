@@ -8,7 +8,7 @@ function Navbar() {
     <Section className="fixed top-0 left-0 w-full bg-darkCoolGray-50">
       <Nav>
         <div className=''>
-          <Link to="/" className='flex items-center'>
+          <Link to="/" className='flex items-center w-fit'>
             <figure className='w-[35px] h-[35px]'>
                 <img className='w-[100%]' src={Logo} alt="logo" />
             </figure>
