@@ -1,41 +1,10 @@
-import React, {useContext, useState } from 'react'
-import { app } from '../../app/appContext'
+import React, {useContext, useState } from 'react';
+import { app } from '../../app/appContext';
 
-const tableHead=["#", "Date", "Time", "Sender", "Receiver", "Quantity(EOS)", "Price(USD)", "Amount"]
+const tableHead=["#", "Date", "Time", "Sender", "Receiver", "Quantity(EOS)", "Price(USD)", "Amount"];
 
 const DataTable = ({apiData}) => {
-    const [count, setCount] = useState(30)
-    
-    // function exportTableToExcel(tableID, filename = ''){
-    //     let downloadLink;
-    //     let dataType = 'application/vnd.ms-excel';
-    //     let tableSelect = document.getElementById(tableID);
-    //     let tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-        
-    //     // Specify file name
-    //     filename = filename?filename+'.xlsx':'excel_data.xlsx';
-        
-    //     // Create download link element
-    //     downloadLink = document.createElement("a");
-        
-    //     document.body.appendChild(downloadLink);
-        
-    //     if(navigator.msSaveOrOpenBlob){
-    //         let blob = new Blob(['\ufeff', tableHTML], {
-    //             type: dataType
-    //         });
-    //         navigator.msSaveOrOpenBlob( blob, filename);
-    //     }else{
-    //         // Create a link to the file
-    //         downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-        
-    //         // Setting the file name
-    //         downloadLink.download = filename;
-            
-    //         //triggering the function
-    //         downloadLink.click();
-    //     }
-    // }
+    const [count, setCount] = useState(30);
 
     function htmlToCsv(filename){
         let data = [];
@@ -64,15 +33,10 @@ const DataTable = ({apiData}) => {
         download_link.click();
     }
 
-    // document.getElementById("export-btn").addEventListener("click", function(){
-    //     let html = document.querySelector("table").outerHTML;
-    //     htmlToCsv(html, "users.csv");
-    // })
-
     return(
         <div className="flex flex-col font-poppins h-[700px]">
             {
-            
+                apiData &&
                 <div id="export-btn" onClick={() => {
                     
                     htmlToCsv("eos_trx.csv");
