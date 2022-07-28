@@ -37,7 +37,6 @@ export function AppProvider({children}){
         }
     };
 
-    // console.log(data)
 
     return(
         <app.Provider value={{
