@@ -40,14 +40,14 @@ const DataTable = ({apiData}) => {
                 <div id="export-btn" onClick={() => {
                     
                     htmlToCsv("eos_trx.csv");
-                }} className='hover:text-blue-500 cursor-pointer self-end font-poppins flex justify-between items-center w-fit'>
+                }} className='hover:text-blue-500 cursor-pointer font-poppins flex justify-center items-center'>
                     <i className="ri-file-download-fill text-2xl mr-2"></i> <p>Download XSL</p>
                 </div>
             } 
             <div className="overflow-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-1 inline-block min-w-full sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
-                    <table id="table" className="min-w-full">
+                    <table id="table" className="min-w-full hidden">
                     <thead className="bg-white border-b">
                         <tr>
                             {
@@ -64,7 +64,7 @@ const DataTable = ({apiData}) => {
                     <tbody>
 
                         {
-                            apiData?.slice(0, count).map((datum, index) => {
+                            apiData?.map((datum, index) => {
                                 const {timestamp, act: {data: {amount, from, to}}} = datum
                                 const time = new Date(timestamp.toString()).toLocaleTimeString('en-US', {timeZone:'UTC',hour12:true,hour:'numeric',minute:'numeric'});
                                 const date = new Date(timestamp.toString()).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric'});
@@ -92,7 +92,7 @@ const DataTable = ({apiData}) => {
             </div>
             {
                 apiData &&
-                <div onClick={() => setCount(prevCount => prevCount += 30)} className='mt-8 w-[100%] cursor-pointer mx-auto max-w-fit py-4 px-8 bg-blue-500 text-xl text-white rounded transition-all duration-500 ease-in-out hover:border hover:border-blue-500 hover:bg-transparent hover:text-blue-500'>Show More</div>
+                <div onClick={() => setCount(prevCount => prevCount += 30)} className='mt-8 w-[100%] cursor-pointer mx-auto max-w-fit py-4 px-8 bg-blue-500 text-xl text-white rounded transition-all duration-500 ease-in-out hover:border hover:border-blue-500 hover:bg-transparent hover:text-blue-500 hidden'>Show More</div>
             }
         </div>
     )
