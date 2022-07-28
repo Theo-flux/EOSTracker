@@ -38,8 +38,8 @@ const DataTable = ({apiData, filterString}) => {
             {
                 apiData &&
                 <div id="export-btn" onClick={() => {
-                    
                     htmlToCsv("eos_trx.csv");
+                    window.location.reload();
                 }} className='hover:text-blue-500 cursor-pointer font-poppins flex justify-center items-center'>
                     <i className="ri-file-download-fill text-2xl mr-2"></i> <p>Download XSL</p>
                 </div>
