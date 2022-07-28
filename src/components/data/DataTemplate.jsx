@@ -1,10 +1,9 @@
-import React, {useContext, useState } from 'react';
+import React, {useContext } from 'react';
 import { app } from '../../app/appContext';
 
 const tableHead=["#", "Date", "Time", "Sender", "Receiver", "Quantity(EOS)", "Price(USD)", "Amount"];
 
 const DataTable = ({apiData, filterString}) => {
-    const [count, setCount] = useState(30);
 
     function htmlToCsv(filename){
         let data = [];
@@ -90,10 +89,6 @@ const DataTable = ({apiData, filterString}) => {
                 </div>
                 </div>
             </div>
-            {
-                apiData &&
-                <div onClick={() => setCount(prevCount => prevCount += 30)} className='mt-8 w-[100%] cursor-pointer mx-auto max-w-fit py-4 px-8 bg-blue-500 text-xl text-white rounded transition-all duration-500 ease-in-out hover:border hover:border-blue-500 hover:bg-transparent hover:text-blue-500 hidden'>Show More</div>
-            }
         </div>
     )
 }
