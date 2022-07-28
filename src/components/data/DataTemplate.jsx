@@ -3,7 +3,7 @@ import { app } from '../../app/appContext';
 
 const tableHead=["#", "Date", "Time", "Sender", "Receiver", "Quantity(EOS)", "Price(USD)", "Amount"];
 
-const DataTable = ({apiData}) => {
+const DataTable = ({apiData, filterString}) => {
     const [count, setCount] = useState(30);
 
     function htmlToCsv(filename){
@@ -64,7 +64,7 @@ const DataTable = ({apiData}) => {
                     <tbody>
 
                         {
-                            apiData?.map((datum, index) => {
+                            apiData?.filter(data => data?.act?.data.from === filterString).map((datum, index) => {
                                 const {timestamp, act: {data: {amount, from, to}}} = datum
                                 const time = new Date(timestamp.toString()).toLocaleTimeString('en-US', {timeZone:'UTC',hour12:true,hour:'numeric',minute:'numeric'});
                                 const date = new Date(timestamp.toString()).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric'});
@@ -99,11 +99,11 @@ const DataTable = ({apiData}) => {
 }
 
 function DataTemplate() {
-    const {apiData} = useContext(app)
+    const {apiData, filterString} = useContext(app)
 
     return (
         <section className='flex flex-col mt-8'>
-            <DataTable apiData={apiData}/>
+            <DataTable apiData={apiData} filterString={filterString}/>
         </section>
     )
 }

@@ -13,6 +13,7 @@ export function AppProvider({children}){
     });
 
     const [errors, setErrors] = useState();
+    const [filterString, setFilterString] = useState("")
 
     const [isLoading, setLoading] = useState(false)
     const [apiData, setApiData] = useState();
@@ -28,6 +29,7 @@ export function AppProvider({children}){
 
         if (!errors) {
             eos.fetchEosData(data, setApiData, setApiError, setLoading)
+            setFilterString(data.account)
             setData({
                 account: "",
                 b_date: "",
@@ -46,6 +48,7 @@ export function AppProvider({children}){
             apiError,
             isLoading,
             handleOnChange,
+            filterString,
             handleClick
         }}>
             {children}
