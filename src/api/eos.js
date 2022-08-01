@@ -2,7 +2,7 @@ import formatMyTimestamp from "../helpers/dateTime";
 
 export async function fetchEosData(queryData, setApiData, setApiError, setLoading){
     setLoading(true)
-    let { account, b_date, e_date, m_unit } = queryData;
+    let { account, b_date, e_date } = queryData;
     b_date = formatMyTimestamp(b_date);
     e_date = formatMyTimestamp(e_date);
     
