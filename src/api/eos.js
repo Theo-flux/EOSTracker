@@ -1,16 +1,17 @@
+import formatMyTimestamp from "../helpers/dateTime";
+
 export async function fetchEosData(queryData, setApiData, setApiError, setLoading){
     setLoading(true)
-    let { account, b_date, e_date } = queryData;
-
-    let b_date_date = new Date(b_date.toString()).toLocaleDateString('zh-Hans-CN', {year: 'numeric', month: "2-digit", day:"2-digit"}).split("/").join("-");
-    let b_date_time = new Date(b_date.toString()).toLocaleTimeString('en-US', { hour12: false });
-    b_date = `${b_date_date}T${b_date_time}.000`
-
-    let e_date_date = new Date(e_date.toString()).toLocaleDateString('zh-Hans-CN', {year: 'numeric', month: "2-digit", day:"2-digit"}).split("/").join("-");
-    let e_date_time = new Date(e_date.toString()).toLocaleTimeString('en-US', { hour12: false });
-    e_date = `${e_date_date}T${e_date_time}.000`
+    let { account, b_date, e_date, m_unit } = queryData;
+    b_date = formatMyTimestamp(b_date);
+    e_date = formatMyTimestamp(e_date);
     
     const eosUrl = `https://eos.hyperion.eosrio.io/v2/history/get_actions?account=${account}&act.name=transfer&limit=1000&after=${b_date}&before=${e_date}`;
+
+    b_date = formatMyTimestamp(b_date, false);
+    e_date = formatMyTimestamp(e_date, false);
+
+    // const polygonUrl = `https://api.polygon.io/v2/aggs/ticker/X:EOS${m_unit}/range/0/year/${b_date}/${e_date}?adjusted=true&sort=asc&limit=1000?apiKey=${process.env.POLYGON_API_KEY}`;
 
     try {
         const res = await fetch(eosUrl, {

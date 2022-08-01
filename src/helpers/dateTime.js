@@ -1,11 +1,5 @@
-export function time(time) {
-  // Check correct time format and split into components
-  time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
-
-  if (time.length > 1) { // If time format correct
-    time = time.slice(1); // Remove full string match value
-    time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
-    time[0] = +time[0] % 12 || 12; // Adjust hours
-  }
-  return time.join(''); // return adjusted time or original string
+export default function formatMyTimestamp(timeStamp, withTime=true, splitString="/", joinString="-") {
+  let date = new Date(timeStamp.toString()).toLocaleDateString('zh-Hans-CN', {year: 'numeric', month: "2-digit", day:"2-digit"}).split(splitString).join(joinString);
+  let time = new Date(timeStamp.toString()).toLocaleTimeString('en-US', { hour12: false });
+  return withTime ? `${date}T${time}.000` : `${date}${time}`
 }
