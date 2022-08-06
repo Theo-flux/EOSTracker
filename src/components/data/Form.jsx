@@ -36,7 +36,7 @@ const formData = [
 
 function Form() {
 
-    const {data, errors, handleClick, handleOnChange, apiData, apiError, isLoading} = useContext(app);
+    const {data, errors, handleClick, handleOnChange, apiData, apiError, isLoading, polyLoading, polyPrices, polyPricesError} = useContext(app);
     
     return (
         <Section>
@@ -78,9 +78,16 @@ function Form() {
                             :
                             <div className="w-[100%] mx-auto max-w-[300px] mt-8">
                                 <Button handler={handleClick}>
-                                    {isLoading && <svg className="animate-spin h-6 w-6 mr-3 rounded-full spinner-border border-4" viewBox="0 0 24 24"></svg>}
-                                    {isLoading && 'Processing...'}
-                                    {isLoading || 'Get Data'}
+                                    {
+                                        polyLoading ? <svg className="animate-spin h-6 w-6 mr-3 rounded-full spinner-border border-4" viewBox="0 0 24 24"></svg>:
+                                        isLoading ? <svg className="animate-spin h-6 w-6 mr-3 rounded-full spinner-border border-4" viewBox="0 0 24 24"></svg>:
+                                        null
+                                    }
+                                    {
+                                        polyLoading ? 'Processing...':
+                                        isLoading ? 'Processing...':
+                                        "GetData"
+                                    }
                                 </Button>
                             </div>
                         

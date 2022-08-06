@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { validator } from "../helpers/validator";
 import * as eos from "../api/eos";
+import * as poly from '../api/polygon'
 
 export const app = createContext();
 
@@ -19,6 +20,10 @@ export function AppProvider({children}){
     const [apiData, setApiData] = useState();
     const [apiError, setApiError] = useState();
 
+    const [isPolyLoading, setPolyLoading] = useState(false);
+    const [polyPrices, setPolyPrices] = useState();
+    const [polyPriceError, setPolyPriceError] = useState();
+
     const handleOnChange = (event) => {
         const {name, value} = event.target;
         setData({...data, [name]: value});
@@ -29,6 +34,8 @@ export function AppProvider({children}){
 
         if (!errors) {
             eos.fetchEosData(data, setApiData, setApiError, setLoading)
+            poly.fetchPolyPrice(data, setPolyPrices, setPolyPriceError, setPolyLoading)
+
             setFilterString(data.account)
             setData({
                 account: "",
@@ -39,6 +46,8 @@ export function AppProvider({children}){
         }
     };
 
+    console.log('polygon-data', polyPrices)
+    console.log('eos-data',apiData)
 
     return(
         <app.Provider value={{
@@ -47,6 +56,9 @@ export function AppProvider({children}){
             apiData,
             apiError,
             isLoading,
+            isPolyLoading,
+            polyPrices,
+            polyPriceError,
             handleOnChange,
             filterString,
             handleClick
