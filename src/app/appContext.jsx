@@ -46,9 +46,6 @@ export function AppProvider({children}){
         }
     };
 
-    console.log('polygon-data', polyPrices)
-    console.log('eos-data',apiData)
-
     return(
         <app.Provider value={{
             data,

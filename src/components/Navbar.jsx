@@ -5,7 +5,7 @@ import {Nav, Section} from '../shared'
 
 function Navbar() {
   return (
-    <Section className="fixed top-0 left-0 w-full bg-darkCoolGray-50">
+    <Section className="fixed z-5 top-0 left-0 w-full bg-darkCoolGray-50">
       <Nav>
         <div className=''>
           <Link to="/" className='flex items-center w-fit'>
