@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { app } from '../../app/appContext';
-import { timeStampToDate, timeStampToTime, dateFromPolyTimestamp, dateFromTimestamp } from '../../helpers/timeStampConverter';
+import { timeStampToDate, timeStampToTime, dateFromPolyTimestamp } from '../../helpers/timeStampConverter';
 import htmlToCsv from '../../helpers/htmlToCsv';
 
 const tableHead=["#", "Date", "Time", "Sender", "Receiver", "Quantity(EOS)", "Price(USD)", "Amount"];
