@@ -7,7 +7,7 @@ export function timeStampToDate(timestamp){
 }
 
 export function dateFromPolyTimestamp(timestamp) {
-    let fTime = new Date(timestamp).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: 'numeric'})
+    let fTime = new Date(timestamp).toLocaleDateString('en-US', {timeZone:'Africa/lagos', month: 'numeric', day: 'numeric', year: 'numeric'})
 
     return fTime.toString();
 }
