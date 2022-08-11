@@ -4,6 +4,7 @@ import { Section, Div } from '../../shared'
 
 
 export default function Hero(){
+  
   return (
     <Section className={`bg-white`}>
       <Div>
