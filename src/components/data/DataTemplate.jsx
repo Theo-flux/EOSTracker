@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { app } from '../../app/appContext';
-import { timeStampToDate, timeStampToTime, dateFromPolyTimestamp } from '../../helpers/timeStampConverter';
+import { timeStampToDate, timeStampToTime, dateFromPolyTimestamp, dateFromEosTimestamp } from '../../helpers/timeStampConverter';
 import htmlToCsv from '../../helpers/htmlToCsv';
 
 const tableHead=["#", "Date", "Time", "Sender", "Receiver", "Quantity(EOS)", "Price(USD)", "Amount"];
@@ -78,11 +78,22 @@ function DataTemplate() {
 
     const mergeByDate = (a1, a2) =>
     a1?.map(itm => ({
-        ...a2?.find((item) => (dateFromPolyTimestamp(item.t) === timeStampToDate(itm.timestamp)) && item),
+        ...a2?.find((item) => (dateFromPolyTimestamp(item.t) === dateFromEosTimestamp(itm.timestamp)) && item),
         ...itm
     }));
 
     const fData = mergeByDate(filteredApiData, polyPrices)
+
+    // console.log(mergeByDate(filteredApiData, polyPrices))
+    // console.log(`polygon`,typeof(dateFromPolyTimestamp(`2022-08-10T18:11:01.500`)),(dateFromPolyTimestamp(`2022-08-10T18:11:01.500`)))
+    // console.log(`eos`,typeof(dateFromEosTimestamp(`2022-08-10T18:11:01.500`)),(dateFromEosTimestamp(`2022-08-10T18:11:01.500`)))
+
+    // console.log((dateFromEosTimestamp(`2022-08-10T18:11:01.500`)) === (dateFromPolyTimestamp(`2022-08-10T18:11:01.500`)))
+
+    // console.log(polyPrices)
+
+    // console.log(`polygon`,typeof(dateFromPolyTimestamp(1660133580000)),(dateFromPolyTimestamp(1660133580000)))
+    // console.log(`eos`,typeof(dateFromEosTimestamp("2022-08-10T13:13:39.500")),(dateFromEosTimestamp("2022-08-10T13:13:39.500")))
     
     return (
         <section className='flex flex-col mt-8'>

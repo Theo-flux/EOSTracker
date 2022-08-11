@@ -6,7 +6,7 @@ export async function fetchPolyPrice(queryData, setPolyPrices, setPolyPriceError
     b_date = formatMyTimestamp(b_date, false);
     e_date = formatMyTimestamp(e_date, false);
     
-    const polyUrl = `https://api.polygon.io/v2/aggs/ticker/X:EOSUSD/range/1/day/${b_date}/${e_date}?adjusted=true&sort=desc&limit=1000&apiKey=tNkhMKqxm64EtPfoKq2TJLuk9MmlytP5`;
+    const polyUrl = `https://api.polygon.io/v2/aggs/ticker/X:EOSUSD/range/1/hour/${b_date}/${e_date}?adjusted=true&sort=desc&limit=5000&apiKey=tNkhMKqxm64EtPfoKq2TJLuk9MmlytP5`;
 
     try {
         const res = await fetch(polyUrl, {
