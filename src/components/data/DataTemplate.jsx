@@ -55,8 +55,8 @@ const DataTable = ({apiData, polyPrices}) => {
                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{from}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{to}</td>
                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{amount}</td>
-                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{c?.toFixed(2)}</td>
-                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{(amount * c?.toFixed(3)).toFixed(2)}</td>
+                                        <td className="text-sm text-green-600 font-light px-6 py-4 whitespace-nowrap">{c?.toFixed(2)}</td>
+                                        <td className="text-sm text-blue-600 font-light px-6 py-4 whitespace-nowrap">{(amount * c?.toFixed(3)).toFixed(2)}</td>
                                     </tr>
                                 )
                             })
